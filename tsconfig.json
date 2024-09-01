@@ -26,7 +26,7 @@
     "lib": ["es2022"],
 
     // Additional
-    "types": ["node"],
+    "types": ["node", "vitest/globals"],
     "jsx": "react-jsx",
     "jsxImportSource": "hono/jsx",
     "outDir": "./dist",
