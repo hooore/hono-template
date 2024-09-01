@@ -2,25 +2,37 @@
   "name": "hono-template",
   "type": "module",
   "scripts": {
-    "dev": "tsx watch src/index.ts",
-    "build": "tsc",
-    "format": "prettier . --write --ignore-unknown",
-    "prepare": "husky"
+    "dev": "tsx watch --env-file=./.env ./src/index.ts",
+    "build": "tsc --noEmit && esbuild ./src/index.ts --bundle --platform=node --outfile=./dist/index.mjs --format=esm",
+    "format": "prettier --write \"src/**/*.ts\"",
+    "lint": "eslint \"src/**/*.ts\"",
+    "prepare": "husky",
+    "test": "TZ=UTC vitest run -c ./vitest.config.ts",
+    "test:coverage": "TZ=UTC vitest run -c ./vitest.config.ts --coverage",
+    "test:watch": "TZ=UTC vitest -c ./vitest.config.ts"
   },
   "dependencies": {
     "@hono/node-server": "^1.12.2",
-    "hono": "^4.5.9"
+    "hono": "^4.5.10"
   },
   "devDependencies": {
-    "@types/node": "^20.11.17",
+    "@types/node": "^20.14.8",
     "@typescript-eslint/eslint-plugin": "^8.3.0",
     "@typescript-eslint/parser": "^8.3.0",
-    "eslint": "^8",
+    "@vitest/coverage-v8": "^2.0.5",
+    "esbuild": "^0.23.1",
+    "eslint": "^8.57.0",
     "eslint-config-prettier": "^9.1.0",
     "husky": "^9.1.5",
     "lint-staged": "^15.2.9",
     "prettier": "^3.3.3",
     "tsx": "^4.7.1",
-    "typescript": "^5.5.4"
+    "typescript": "^5.5.4",
+    "vite-tsconfig-paths": "^5.0.1",
+    "vitest": "^2.0.5"
+  },
+  "engines": {
+    "node": ">=20.14.8",
+    "pnpm": ">=9"
   }
 }
