@@ -7,6 +7,7 @@
     "format": "prettier --write \"src/**/*.ts\"",
     "lint": "eslint \"src/**/*.ts\"",
     "prepare": "husky",
+    "ts:check": "tsc --noEmit",
     "test": "TZ=UTC vitest run -c ./vitest.config.ts",
     "test:coverage": "TZ=UTC vitest run -c ./vitest.config.ts --coverage",
     "test:watch": "TZ=UTC vitest -c ./vitest.config.ts"
