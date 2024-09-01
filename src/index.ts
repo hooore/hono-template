@@ -1,10 +1,12 @@
 import { serve } from "@hono/node-server";
 import { app } from "./server";
 
-const port = 3000;
-console.log(`Server is running on port ${port}`);
+const PORT = Number(process.env.PORT);
+const HOSTNAME = process.env.HOSTNAME;
+console.log(`Server is running on port ${PORT}`);
 
 serve({
   fetch: app.fetch,
-  port,
+  hostname: HOSTNAME,
+  port: PORT,
 });

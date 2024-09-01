@@ -32,6 +32,5 @@ RUN adduser --system --uid 1001 hono
 COPY --from=builder --chown=hono:nodejs /app/dist /app/dist
 
 USER hono
-EXPOSE 3000
 
 CMD ["node", "/app/dist/index.mjs"]
