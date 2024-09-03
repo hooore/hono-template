@@ -2,7 +2,6 @@ import { serve } from "@hono/node-server";
 import { prometheus } from "@hono/prometheus";
 import { rateLimiter } from "hono-rate-limiter";
 import { cors } from "hono/cors";
-import { HTTPException } from "hono/http-exception";
 import { secureHeaders } from "hono/secure-headers";
 import { app } from "./app";
 import { translateError } from "./middlewares/translate-error";
@@ -21,14 +20,7 @@ const limiter = rateLimiter({
 
 const { printMetrics, registerMetrics } = prometheus();
 
-app.onError((err, _) => {
-  if (err instanceof HTTPException) {
-    // Get the custom response
-    return err.getResponse();
-  }
-
-  return translateError(err);
-});
+app.onError(translateError);
 
 app.use(
   "*",

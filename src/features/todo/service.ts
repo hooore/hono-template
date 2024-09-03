@@ -1,6 +1,6 @@
 import type { ITodoRepository } from "./repository";
 import type { CreateTodoSchema, UpdateTodoSchema } from "./request.schema";
-import { Todo } from "@/types/todo";
+import { Todo } from "./model";
 import type { IIdentifer } from "@/lib/identifer";
 import type { IFileStorage } from "@/lib/file-storage";
 

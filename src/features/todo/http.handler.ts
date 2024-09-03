@@ -1,5 +1,6 @@
 import type { AppType } from "@/app";
-import { zValidator } from "@hono/zod-validator";
+import { zValidator } from "@/middlewares/zod-validator";
+import { validator } from "hono/validator";
 import { Hono, type MiddlewareHandler } from "hono";
 import { createTodoSchema, updateTodoSchema } from "./request.schema";
 import type { ITodoService } from "./service";
@@ -19,7 +20,7 @@ export function initTodoHttpHandler(
 
   const createHandler = apiRoute.post(
     "/",
-    zValidator("json", createTodoSchema),
+    validator("json", zValidator(createTodoSchema)),
     async (c) => {
       const data = c.req.valid("json");
       const todoId = await todoService.Create(data);
@@ -68,7 +69,7 @@ export function initTodoHttpHandler(
 
   const updateHandler = apiRoute.put(
     "/:todoId",
-    zValidator("form", updateTodoSchema),
+    validator("form", zValidator(updateTodoSchema)),
     async (c) => {
       const todoId = c.req.param("todoId");
       const data = c.req.valid("form");

@@ -1,5 +1,5 @@
 import { NotFoundError } from "@/exceptions/not-found.error";
-import { Todo } from "@/types/todo";
+import { Todo } from "./model";
 import type { TodoTable } from "@/types/todo-table";
 
 export interface ITodoRepository {

@@ -1,7 +1,7 @@
 import { testClient } from "hono/testing";
 import { initTodoHttpHandler } from "./http.handler";
 import type { ITodoService } from "./service";
-import { Todo } from "@/types/todo";
+import { Todo } from "./model";
 
 const todoId = "random";
 
