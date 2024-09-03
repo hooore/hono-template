@@ -52,6 +52,7 @@ app.get("/metrics", printMetrics);
 
 initRoute(app);
 
+// eslint-disable-next-line no-console
 console.log(`Server is running on port ${PORT}`);
 
 serve({
