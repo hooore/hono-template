@@ -1,9 +1,11 @@
 services:
-  hono-app:
-    image: hono-app
+  hono-template:
+    image: hono-template
     build:
       context: .
       dockerfile: Dockerfile
     env_file:
       - path: ./.env
         required: true
+    ports:
+      - "${PORT}:${PORT}"

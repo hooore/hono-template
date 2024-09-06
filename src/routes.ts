@@ -2,7 +2,7 @@ import { jwt } from "hono/jwt";
 
 import type { AppType } from "./app";
 
-import { ULID } from "./lib/identifer";
+import { Identifier } from "./lib/identifer";
 
 import { initTodoHttpHandler } from "./features/todo/http.handler";
 import { TodoRepository } from "./features/todo/repository";
@@ -10,7 +10,7 @@ import { TodoService } from "./features/todo/service";
 import { FileStorage } from "./lib/file-storage";
 
 export function initRoute(honoApp: AppType) {
-  const ulid = new ULID();
+  const identifier = new Identifier();
   const fileStorage = new FileStorage();
 
   const jwtMiddleware = jwt({
@@ -18,7 +18,7 @@ export function initRoute(honoApp: AppType) {
   });
 
   const todoRepository = new TodoRepository();
-  const todoService = new TodoService(ulid, fileStorage, todoRepository);
+  const todoService = new TodoService(identifier, fileStorage, todoRepository);
   const todoHttpHandler = initTodoHttpHandler(
     {
       todoService,

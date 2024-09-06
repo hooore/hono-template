@@ -5,7 +5,7 @@ FROM base AS builder
 RUN apk add --no-cache gcompat
 WORKDIR /app
 
-COPY package*json yarn.lock* package-lock.json* pnpm-lock.yaml* tsconfig.json src ./
+COPY package*json yarn.lock* package-lock.json* pnpm-lock.yaml* tsconfig.json ./
 
 RUN \
   if [ -f yarn.lock ]; then yarn --frozen-lockfile; \
@@ -14,6 +14,7 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
+COPY env.d.ts ./
 COPY src ./src
 
 RUN \
@@ -33,4 +34,6 @@ COPY --from=builder --chown=hono:nodejs /app/dist /app/dist
 
 USER hono
 
-CMD ["node", "/app/dist/index.mjs"]
+EXPOSE ${PORT}
+
+CMD ["node", "/app/dist/index.js"]

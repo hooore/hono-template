@@ -2,7 +2,7 @@ export interface IIdentifer {
   Generate(): string;
 }
 
-export class ULID implements IIdentifer {
+export class Identifier implements IIdentifer {
   Generate(): string {
     return "random";
   }

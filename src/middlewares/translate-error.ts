@@ -2,7 +2,7 @@ import { ForbiddenError } from "@/exceptions/forbidden.error";
 import { NotFoundError } from "@/exceptions/not-found.error";
 import { UnauthorizedError } from "@/exceptions/unauthorized.error";
 import type { StatusCode } from "hono/utils/http-status";
-import type { ErrorResponse } from "@/types/error";
+import type { ErrorResponse } from "@/types/response";
 import { UnprocessableError } from "@/exceptions/unprocessable.error";
 import { HTTPException } from "hono/http-exception";
 
@@ -100,11 +100,8 @@ export function translateError(error: Error | HTTPException) {
   }
 
   const errors: ErrorResponse = {
-    success: false,
-    error: {
-      name: name,
-      message: message,
-    },
+    name: name,
+    message: message,
   };
   return new Response(JSON.stringify(errors), { status: code });
 }

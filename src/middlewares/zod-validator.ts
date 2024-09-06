@@ -1,4 +1,4 @@
-import type { ValidationErrorResponse } from "@/types/error";
+import type { ValidationErrorResponse } from "@/types/response";
 import type { Context } from "hono";
 import type { z, ZodSchema } from "zod";
 
@@ -7,11 +7,8 @@ export function zValidator<TSchema extends ZodSchema>(zSchema: TSchema) {
     const parsed = zSchema.safeParse(value);
     if (!parsed.success) {
       const errorRespponse: ValidationErrorResponse = {
-        success: false,
-        error: {
-          name: "ValidationError",
-          fields: parsed.error.flatten().fieldErrors,
-        },
+        name: "ValidationError",
+        fields: parsed.error.flatten().fieldErrors,
       };
       return c.json(errorRespponse, 422);
     }
