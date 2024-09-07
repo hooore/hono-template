@@ -14,8 +14,7 @@ RUN \
   else echo "Lockfile not found." && exit 1; \
   fi
 
-COPY env.d.ts ./
-COPY src ./src
+COPY . .
 
 RUN \
   if [ -f yarn.lock ]; then yarn build; \
