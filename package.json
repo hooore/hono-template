@@ -7,9 +7,9 @@
     "lint": "eslint \"src/**/*.ts\"",
     "prepare": "husky",
     "ts:check": "tsc --noEmit",
-    "test": "TZ=UTC vitest run -c ./vitest.config.ts",
-    "test:coverage": "TZ=UTC vitest run -c ./vitest.config.ts --coverage",
-    "test:watch": "TZ=UTC vitest -c ./vitest.config.ts"
+    "test": "TZ=UTC vitest run -c ./vitest.config.mts",
+    "test:coverage": "TZ=UTC vitest run -c ./vitest.config.mts --coverage",
+    "test:watch": "TZ=UTC vitest -c ./vitest.config.mts"
   },
   "dependencies": {
     "@hono/node-server": "^1.12.2",
