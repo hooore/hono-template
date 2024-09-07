@@ -33,6 +33,7 @@ COPY --from=builder --chown=hono:nodejs /app/dist /app/dist
 
 USER hono
 
+ARG PORT=3000
 EXPOSE ${PORT}
 
 CMD ["node", "/app/dist/index.js"]
